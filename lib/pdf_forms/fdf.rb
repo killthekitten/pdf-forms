@@ -34,17 +34,7 @@ module PdfForms
       end
 
       fdf << footer
-      # I have yet to see a version of pdftk which can handle UTF8 input,
-      # so we convert to ISO-8859-15 here, replacing unknown / invalid chars
-      # with the default replacement which is '?'.
-      if fdf.respond_to?(:encode!)
-        # Ruby >= 1.9
-        fdf.encode!('ISO-8859-15', :invalid => :replace, :undef => :replace)
-      else
-        # pre 1.9
-        require 'iconv'
-        fdf = Iconv.conv('ISO-8859-15//IGNORE', 'utf-8', fdf)
-      end
+
       return fdf
     end
 
