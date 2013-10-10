@@ -28,7 +28,7 @@ module PdfForms
     protected
 
     def read_fields
-      field_output = @pdftk.call_pdftk quote_path(path), 'dump_data_fields'
+      field_output = @pdftk.call_pdftk quote_path(path), 'dump_data_fields_utf8'
       @fields = field_output.split(/^---\n/).map do |field_text|
         Field.new field_text if field_text =~ /FieldName:/
       end.compact
